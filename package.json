@@ -1,0 +1,25 @@
+{
+  "name": "exception-tree",
+  "version": "1.0.0",
+  "description": "Produce exception errors that point to where in a data tree the error occurred.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gi60s/exception-tree.git"
+  },
+  "keywords": [
+    "exception",
+    "error",
+    "trace",
+    "tree"
+  ],
+  "author": "James Speirs <james.speirs@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Gi60s/exception-tree/issues"
+  },
+  "homepage": "https://github.com/Gi60s/exception-tree#readme"
+}
