@@ -12,7 +12,7 @@ export const config: ConfigOptions = {
 	displayReferences: true
 }
 
-class Exception {
+export class Exception {
 	public header: string
 	public __data: {
 		at: {
@@ -59,7 +59,7 @@ class Exception {
 	}
 
 	public message (message: string, code: string, reference?: string): Exception {
-		const result = (config.displayCodes ? '[' + code + '] ' : '') +
+		const result = (config.displayCodes && code ? '[' + code + '] ' : '') +
 			(config.displayReferences && reference ? '(' + reference + ') ' : '') +
 			message
 		this.__data.message.push(result)
@@ -121,7 +121,6 @@ function toString (context: Exception, parent: Exception | null, prefix: string)
 
 	return result
 }
-
 
 // function toStringLeaders (context: EnforcerException, parent: EnforcerException | null, prefix: string) : string {
 //     if (!context.hasException) return ''
