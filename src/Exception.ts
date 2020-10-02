@@ -3,13 +3,17 @@ import * as util from 'util'
 const inspect = util.inspect.custom || 'inspect'
 
 interface ConfigOptions {
-	displayCodes?: boolean
-	displayReferences?: boolean
+	displayCodes: boolean
+	displayReferences: boolean
+	requireCodes: boolean
+	skipCodes: string[]
 }
 
 export const config: ConfigOptions = {
 	displayCodes: true,
-	displayReferences: true
+	displayReferences: true,
+	requireCodes: false,
+	skipCodes: []
 }
 
 export class Exception {
@@ -58,11 +62,14 @@ export class Exception {
 		return false
 	}
 
-	public message (message: string, code: string, reference?: string): Exception {
-		const result = (config.displayCodes && code ? '[' + code + '] ' : '') +
-			(config.displayReferences && reference ? '(' + reference + ') ' : '') +
-			message
-		this.__data.message.push(result)
+	public message (message: string, code?: string, reference?: string): Exception {
+		if (config.requireCodes && arguments.length < 2) throw Error('Missing required code with message: ' + message)
+		if (!code || !config.skipCodes.includes(code)) {
+			const result = (config.displayCodes && code ? '[' + code + '] ' : '') +
+				(config.displayReferences && reference ? '(' + reference + ') ' : '') +
+				message
+			this.__data.message.push(result)
+		}
 		return this
 	}
 
@@ -79,6 +86,10 @@ export class Exception {
 
 	public toString (): string {
 		return toString(this, null, '')
+	}
+
+	get config () {
+		return config
 	}
 
 	[inspect] () {
