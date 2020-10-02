@@ -33,7 +33,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     const inspect = util.inspect.custom || 'inspect';
     exports.config = {
         displayCodes: true,
-        displayReferences: true
+        displayReferences: true,
+        requireCodes: false,
+        skipCodes: []
     };
     class Exception {
         constructor(header) {
@@ -71,10 +73,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
             return false;
         }
         message(message, code, reference) {
-            const result = (exports.config.displayCodes && code ? '[' + code + '] ' : '') +
-                (exports.config.displayReferences && reference ? '(' + reference + ') ' : '') +
-                message;
-            this.__data.message.push(result);
+            if (exports.config.requireCodes && arguments.length < 2)
+                throw Error('Missing required code with message: ' + message);
+            if (!code || !exports.config.skipCodes.includes(code)) {
+                const result = (exports.config.displayCodes && code ? '[' + code + '] ' : '') +
+                    (exports.config.displayReferences && reference ? '(' + reference + ') ' : '') +
+                    message;
+                this.__data.message.push(result);
+            }
             return this;
         }
         nest(header) {
@@ -88,6 +94,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
         }
         toString() {
             return toString(this, null, '');
+        }
+        get config() {
+            return exports.config;
         }
         [inspect]() {
             if (this.hasException) {
