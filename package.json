@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Produce exception errors that point to where in a data tree the error occurred.",
   "main": "dist/Exception.js",
-  "typings": "dist/Exception.d.ts",
+  "types": "dist/Exception.d.ts",
   "scripts": {
     "test": "mocha test"
   },
