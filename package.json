@@ -1,6 +1,6 @@
 {
   "name": "exception-tree",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Produce exception errors that point to where in a data tree the error occurred.",
   "main": "./index.js",
   "types": "./index.d.ts",
