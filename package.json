@@ -2,8 +2,8 @@
   "name": "exception-tree",
   "version": "1.0.1",
   "description": "Produce exception errors that point to where in a data tree the error occurred.",
-  "main": "dist/Exception.js",
-  "types": "dist/Exception.d.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "mocha test"
   },

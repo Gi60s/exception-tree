@@ -1,5 +1,5 @@
 'use strict';
-const { Exception }     = require('../dist/Exception');
+const { Exception }     = require('../');
 const expect        = require('chai').expect;
 
 describe('exception', () => {

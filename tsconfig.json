@@ -9,10 +9,6 @@
     "module": "UMD",
     "target": "es2019",
 
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "sourceRoot": "./src",
-
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "removeComments": true,
